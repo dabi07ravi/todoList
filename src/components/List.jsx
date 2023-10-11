@@ -13,22 +13,25 @@ const TodoList = () => {
     setInputList(event.target.value);
   };
   const handleSubmit = () => {
-    if (edit !== null) {
-      // Edit existing item
-      const updatedItems = [...items];
-      updatedItems[edit] = inputList;
-      setItems(updatedItems);
-      setEdit(null);
-      setInputList("");
-      localStorage.setItem("items", JSON.stringify(updatedItems));
-    } else {
-      // Add new item
-      const updatedItems = [...items, inputList];
-      setItems(updatedItems);
-      setInputList("");
-      localStorage.setItem("items", JSON.stringify(updatedItems));
+    if (inputList.trim() !== "") {
+      if (edit !== null) {
+        // Edit existing item
+        const updatedItems = [...items];
+        updatedItems[edit] = inputList;
+        setItems(updatedItems);
+        setEdit(null);
+        setInputList("");
+        localStorage.setItem("items", JSON.stringify(updatedItems));
+      } else {
+        // Add new item
+        const updatedItems = [...items, inputList];
+        setItems(updatedItems);
+        setInputList("");
+        localStorage.setItem("items", JSON.stringify(updatedItems));
+      }
     }
   };
+  
 
   const handleDel = (index) => {
     const removedItem = items.splice(index, 1);
