@@ -17,7 +17,7 @@
   h1 {
     text-align: center;
     background-color: #27374d;
-    color: #fff;
+    color: #fff !important;
     margin-top: 0;
     padding: 0.75rem;
   }
@@ -84,9 +84,47 @@
     width: 84px;
     margin-left: 15px;
     font-size: 20px;
+    text-align: center;
   }
   
   .list {
     width: 80%;
   }
+
+
+  .custom-pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+  }
+  
+  .page-link {
+    display: inline-block;
+    padding: 5px 10px;
+    margin: 5px;
+    background-color: #27374df7;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+  }
+  
+  .prev:hover:hover,
+  .next:hover :hover,
+  .page-link:hover {
+    background-color: #2980b9;
+  }
+  
+  .prev,
+  .next {
+    background-color: #27374d;
+  }
+  
+  .page-link.active {
+    background-color: #555;
+  }
+
+
+  
   
