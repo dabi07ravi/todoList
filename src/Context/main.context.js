@@ -8,12 +8,13 @@ export const ToDoProvider = ({ children }) => {
   const [items, setItems] = useState([]);
   const [edit, setEdit] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(0);
   const getLists = async() => {
-    await axios.get("http://localhost:3000/get").then((response) => {
-
+    await axios.get(`http://localhost:3000/get?page=${currentPage}&limit=2`).then((response) => {
        if (response.data) {
-        const { data, page, dataPerPage, totalPage } = response.data;
+        const { data,totalPage} = response.data;
         setItems(data);
+        setTotalPages(totalPage)
       }
     })
   };
@@ -25,6 +26,10 @@ export const ToDoProvider = ({ children }) => {
     edit,
     setEdit,
     getLists,
+    currentPage,
+    setCurrentPage,
+    totalPages,
+    setTotalPages
   };
   return (
     <ToDoContext.Provider value={context}>{children}</ToDoContext.Provider>

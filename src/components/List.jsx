@@ -4,12 +4,22 @@ import ToDoContext from "../Context/main.context";
 import axios from "axios";
 
 const TodoList = () => {
-  const { inputList, setInputList, items, setItems, edit, setEdit, getLists } =
-    useContext(ToDoContext);
+  const {
+    inputList,
+    setInputList,
+    items,
+    setItems,
+    edit,
+    setEdit,
+    getLists,
+    currentPage,
+    setCurrentPage,
+    totalPages,
+  } = useContext(ToDoContext);
   // Initialize state with data from local storage
   useEffect(() => {
     getLists();
-  }, [items]);
+  }, [currentPage,items]);
   const handleInputList = (event) => {
     setInputList(event.target.value);
   };
@@ -63,6 +73,19 @@ const TodoList = () => {
     setInputList(title);
     setEdit(_id);
   };
+
+  const handlePrevPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
+  const handleNextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
   return (
     <div className="App">
       <div className="maindiv">
@@ -102,23 +125,19 @@ const TodoList = () => {
                 ))}
               </ul>
             </div>
-            <div class="custom-pagination">
-              <a href="#" class="page-link prev deleteButton">
-                Previous
-              </a>
-              <a href="#" class="page-link">
-                1
-              </a>
-              <a href="#" class="page-link">
-                2
-              </a>
-              <a href="#" class="page-link">
-                3
-              </a>
-              <a href="#" class="page-link next editButton ">
-                Next
-              </a>
+            <div className="pagebutton">
+            <button className="prvbttn" onClick={handlePrevPage} disabled={currentPage === 1}>
+              Previous Page
+            </button>
+            <button
+            className="nxtbttn"
+              onClick={handleNextPage}
+              disabled={currentPage === totalPages}
+            >
+              Next Page
+            </button>
             </div>
+         
           </div>
         </div>
       </div>

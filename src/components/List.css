@@ -125,6 +125,14 @@
     background-color: #555;
   }
 
+  .prvbttn, .nxtbttn{
+    margin-right: 20px;
+    font-size: 20px;
+    cursor: pointer;
+    margin-bottom: 10px;
+  }
+  
+
 
   
   
